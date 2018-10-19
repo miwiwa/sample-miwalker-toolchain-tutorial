@@ -33,16 +33,16 @@ parser = argparse.ArgumentParser(     description=__doc__)
 
 parser.add_argument('-a','--API_KEY', nargs='+', dest='API_KEY', help="PagerDuty API Key", required=True)
 parser.add_argument('-s','--SERVICE_ID', nargs='+', dest='SERVICE_ID', help="PagerDuty Service ID", required=True)
-parser.add_argument('-f','--EMAIL_FROM', nargs='+', dest='EMAIL_FROM', help="Add valid PagerDuty email address", required=True)
+#parser.add_argument('-f','--EMAIL_FROM', nargs='+', dest='EMAIL_FROM', help="Add valid PagerDuty email address", required=True)
 
 args = parser.parse_args()
 api_key = str(args.API_KEY)
 service_id=str(args.SERVICE_ID)
-email_from=str(args.EMAIL_FROM)
+#email_from=str(args.EMAIL_FROM)
 
 print "API_KEY:",api_key
 print "service_id:",service_id
-print "EMAIL_FROM:",email_from
+#print "EMAIL_FROM:",email_from
 
 
 def trigger_incident():
@@ -53,7 +53,7 @@ def trigger_incident():
         'Content-Type': 'application/json',
         'Accept': 'application/vnd.pagerduty+json;version=2',
         'Authorization': 'Token token={token}'.format(token=api_key),
-        'From': email_from
+        'From': 'miwalker@us.ibm.com'
     }
 
     payload = {
