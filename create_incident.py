@@ -29,9 +29,9 @@ import requests
 import json
 
 # Update to match your API key
-API_KEY = 'Wd1wzzuFSzGm_Hx7KcU8'
-SERVICE_ID = 'PCE74N6'
-FROM = 'miwalker@us.ibm.com'
+API_KEY = ${PAGERDUTY_APIKEY}
+SERVICE_ID = ${PAGERDUTY_SERVICEID}
+FROM = ${PAGERDUTY_FROM}
 
 def trigger_incident():
     """Triggers an incident via the V2 REST API using sample data."""
@@ -47,15 +47,15 @@ def trigger_incident():
     payload = {
         "incident": {
             "type": "incident",
-            "title": "The server is on fire.",
+            "title": "Job: ${JOB_NAME} Stage: ${IDS_STAGE_NAME}",
             "service": {
                 "id": SERVICE_ID,
                 "type": "service_reference"
             },
-            "incident_key": "baf7cf21b1da41b4b0221008339ff3571",
+            #"incident_key": "baf7cf21b1da41b4b0221008339ff3571",
             "body": {
                 "type": "incident_body",
-                "details": "A disk is getting full on this machine. You should investigate what is causing the disk to fill, and ensure that there is an automated process in place for ensuring data is rotated (eg. logs should have logrotate around them). If data is expected to stay on this disk forever, you should start planning to scale up to a larger disk."
+                "details": "${JOB_NUMBER} failed"
             }
           }
         }
