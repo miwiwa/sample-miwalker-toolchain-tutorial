@@ -30,7 +30,7 @@ import json
 
 # Update to match your API key
 API_KEY = 'Wd1wzzuFSzGm_Hx7KcU8'
-SERVICE_ID = 'IBM Bluemix Service'
+SERVICE_ID = 'PCE74N6'
 FROM = 'miwalker@us.ibm.com'
 
 def trigger_incident():
