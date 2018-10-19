@@ -40,8 +40,9 @@ api_key = str(args.API_KEY)
 service_id=str(args.SERVICE_ID)
 #email_from=str(args.EMAIL_FROM)
 
-print "API_KEY:",api_key
-print "service_id:",service_id
+print "Checking types....."
+print type(api_key)
+print type(service_id)
 #print "EMAIL_FROM:",email_from
 
 
