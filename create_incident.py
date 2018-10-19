@@ -31,16 +31,16 @@ import argparse
 
 parser = argparse.ArgumentParser(     description=__doc__)
 
-parser.add_argument('-a','--API_KEY', nargs='+', dest='API_KEY', help="PagerDuty API Key", required=True)
+parser.add_argument('-a','--API_KEY', nargs='+', type=string, dest='API_KEY', help="PagerDuty API Key", required=True)
 parser.add_argument('-s','--SERVICE_ID', nargs='+', dest='SERVICE_ID', help="PagerDuty Service ID", required=True)
 #parser.add_argument('-f','--EMAIL_FROM', nargs='+', dest='EMAIL_FROM', help="Add valid PagerDuty email address", required=True)
 
 args = parser.parse_args()
-#api_key = args.API_KEY
+api_key = args.API_KEY
 #service_id = args.SERVICE_ID
 #email_from=str(args.EMAIL_FROM)
 
-api_key = 'Wd1wzzuFSzGm_Hx7KcU8'
+#api_key = 'Wd1wzzuFSzGm_Hx7KcU8'
 service_id = 'PCE74N6'
 FROM = 'miwalker@us.ibm.com'
 
