@@ -32,16 +32,18 @@ import argparse
 parser = argparse.ArgumentParser(     description=__doc__)
 
 parser.add_argument('-a','--API_KEY', nargs='+', dest='API_KEY', help="PagerDuty API Key", required=True)
+parser.add_argument('-s','--SERVICE_ID', nargs='+', dest='SERVICE_ID', help="PagerDuty Service ID", required=True)
+parser.add_argument('-f','--EMAIL_FROM', nargs='+', dest='EMAIL_FROM', help="Add valid PagerDuty email address", required=True)
 
 args = parser.parse_args()
 api_key = args.API_KEY
+service_id=args.SERVICE_ID
+email_from=args.EMAIL_FROM
 
-print api_key
+print "API_KEY:",api_key
+print "service_id:",service_id
+print "EMAIL_FROM:",email_from
 
-# Update to match your API key
-API_KEY = 'Wd1wzzuFSzGm_Hx7KcU8'
-SERVICE_ID = 'PCE74N6'
-FROM = 'miwalker@us.ibm.com'
 
 def trigger_incident():
     """Triggers an incident via the V2 REST API using sample data."""
@@ -50,8 +52,8 @@ def trigger_incident():
     headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token={token}'.format(token=API_KEY),
-        'From': FROM
+        'Authorization': 'Token token={token}'.format(token=api_key),
+        'From': email_from
     }
 
     payload = {
@@ -59,7 +61,7 @@ def trigger_incident():
             "type": "incident",
             "title": "Job: ${JOB_NAME} Stage: ${IDS_STAGE_NAME}",
             "service": {
-                "id": SERVICE_ID,
+                "id": service_id,
                 "type": "service_reference"
             },
             #"incident_key": "baf7cf21b1da41b4b0221008339ff3571",
