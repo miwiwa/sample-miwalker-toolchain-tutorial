@@ -27,11 +27,21 @@
 
 import requests
 import json
+import argparse
+
+parser = argparse.ArgumentParser(     description=__doc__)
+
+parser.add_argument('-a','--API_KEY', nargs='+', dest='API_KEY', help="PagerDuty API Key", required=True)
+
+args = parser.parse_args()
+api_key = args.API_KEY
+
+print api_key
 
 # Update to match your API key
-API_KEY = ${PAGERDUTY_APIKEY}
-SERVICE_ID = ${PAGERDUTY_SERVICEID}
-FROM = ${PAGERDUTY_FROM}
+API_KEY = 'Wd1wzzuFSzGm_Hx7KcU8'
+SERVICE_ID = 'PCE74N6'
+FROM = 'miwalker@us.ibm.com'
 
 def trigger_incident():
     """Triggers an incident via the V2 REST API using sample data."""
