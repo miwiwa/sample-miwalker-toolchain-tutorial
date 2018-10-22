@@ -46,6 +46,7 @@ def trigger_issue(title, body=None, labels=None):
     r = session.post(url, json.dumps(issue))
     if r.status_code == 201:
         print ('Successfully created Issue {0:s}'.format(title))
+        print ('Response:', r.content)
     else:
         print ('Could not create Issue {0:s}'.format(title))
         print ('Response:', r.content)
