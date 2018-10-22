@@ -33,6 +33,7 @@ from pprint import pprint
 with open(''${WORKSPACE}/_toolchain.json') as f:
     data = json.load(f)
 
+print("printing json")
 pprint(data)
 
 
