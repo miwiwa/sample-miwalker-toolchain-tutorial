@@ -28,6 +28,13 @@
 import requests
 import json
 import argparse
+from pprint import pprint
+
+with open(''${WORKSPACE}/_toolchain.json') as f:
+    data = json.load(f)
+
+pprint(data)
+
 
 parser = argparse.ArgumentParser(     description=__doc__)
 
@@ -49,6 +56,10 @@ print api_key
 print service_id
 #print "EMAIL_FROM:",email_from
 
+
+itegration_properties = json.loads(open('${WORKSPACE}/_toolchain.json').read())
+
+pd_apikey = integration_properties['']
 
 def trigger_incident():
     """Triggers an incident via the V2 REST API using sample data."""
