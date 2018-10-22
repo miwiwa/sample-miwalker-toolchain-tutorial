@@ -30,7 +30,7 @@ import json
 import argparse
 from pprint import pprint
 
-with open(''${WORKSPACE}/_toolchain.json') as f:
+with open('${WORKSPACE}/_toolchain.json') as f:
     data = json.load(f)
 
 print("printing json")
