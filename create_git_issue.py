@@ -33,7 +33,7 @@ print repo_name
 def trigger_issue(title, body=None, labels=None):
     """Triggers an incident via the V2 REST API using sample data."""
     
-  url = 'https://api.github.com/repos/%s/%s/issues' % (REPO_OWNER, REPO_NAME)
+    url = 'https://api.github.com/repos/%s/%s/issues' % (REPO_OWNER, REPO_NAME)
   
   # Create an authenticated session to create the issue
     session = requests.Session()
