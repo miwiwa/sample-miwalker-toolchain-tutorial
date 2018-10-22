@@ -51,4 +51,4 @@ def trigger_issue(title, body=None, labels=None):
         print ('Response:', r.content)
 
 if __name__ == '__main__':
-    trigger_issue('git title', 'git body', 'git label')
+    trigger_issue('git title', 'git body', ['bug'])
