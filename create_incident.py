@@ -74,6 +74,15 @@ pprint(data)
 
 #pd_apikey = integration_properties['']
 
+
+def recursive_lookup(k, d):
+    if k in d:
+        return d[k]
+    for v in d.values():
+        if isinstance(v, dict):
+            return recursive_lookup(k, v)
+    return None
+    
 def trigger_incident():
     """Triggers an incident via the V2 REST API using sample data."""
     
@@ -107,4 +116,5 @@ def trigger_incident():
     print r.json()
 
 if __name__ == '__main__':
+	recursive_lookup(service_id,data)
     trigger_incident()
