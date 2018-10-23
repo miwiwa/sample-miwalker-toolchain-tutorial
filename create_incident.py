@@ -68,6 +68,7 @@ with open(toolchain_json) as f:
     data = json.load(f)
 
 print("printing json")
+print(type(data))
 pprint(data)
 #itegration_properties = json.loads(open('${WORKSPACE}/_toolchain.json').read())
 
