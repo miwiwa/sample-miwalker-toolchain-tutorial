@@ -52,7 +52,7 @@ service_id = ''.join(args.SERVICE_ID)
 #email_from=str(args.EMAIL_FROM)
 workspace = ''.join(args.WORKSPACE)
 
-toolchain_json = "%d/_toolchain.json" % workspace
+toolchain_json = "%s/_toolchain.json" % workspace
 
 #api_key = 'Wd1wzzuFSzGm_Hx7KcU8'
 #service_id = 'PCE74N6'
@@ -61,7 +61,7 @@ FROM = 'miwalker@us.ibm.com'
 print "Checking values....."
 print api_key
 print service_id
-print workspace
+print toolchain_json
 #print "EMAIL_FROM:",email_from
 
 with open(toolchain_json, r) as f:
