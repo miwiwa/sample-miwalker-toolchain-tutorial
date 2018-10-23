@@ -29,6 +29,7 @@ import requests
 import json
 import argparse
 from pprint import pprint
+from functools import reduce
 
 
 
@@ -75,14 +76,10 @@ pprint(data)
 #pd_apikey = integration_properties['']
 
 
-def recursive_lookup(k, d):
-    if k in d:
-        return d[k]
-    for v in d.values():
-        if isinstance(v, dict):
-            return recursive_lookup(k, v)
-    return None
-    
+def deep_get(dictionary, keys, default=None):
+ 	return reduce(lambda d, key: d.get(key, default) if isinstance(d, dict) else default, keys.split("."), dictionary)
+
+
 def trigger_incident():
     """Triggers an incident via the V2 REST API using sample data."""
     
@@ -117,8 +114,7 @@ def trigger_incident():
 
 if __name__ == '__main__':
 	print("performing recursive lookup")
-	print("=============================")
-	recursive_lookup(u'service_id' ,data)
+	print (deep_get(data, "services.broker_id.parameters"))
 	print("=============================")
 	print("Creating incident report")
 	trigger_incident()
