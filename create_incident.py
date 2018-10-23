@@ -31,11 +31,7 @@ import argparse
 from pprint import pprint
 
 
-pwd
-ls
 
-cd ${WORKSPACE}
-ls
 #with open('${WORKSPACE}/_toolchain.json') as f:
 #    data = json.load(f)
 
@@ -48,11 +44,13 @@ parser = argparse.ArgumentParser(     description=__doc__)
 parser.add_argument('-a','--API_KEY', nargs='+', type=str, dest='API_KEY', help="PagerDuty API Key", required=True)
 parser.add_argument('-s','--SERVICE_ID', nargs='+', type=str, dest='SERVICE_ID', help="PagerDuty Service ID", required=True)
 #parser.add_argument('-f','--EMAIL_FROM', nargs='+', dest='EMAIL_FROM', help="Add valid PagerDuty email address", required=True)
+parser.add_argument('-w','--WORKSPACE', nargs='+', type=str, dest='WORKSPACE', help="WORKSPACE for environment", required=True)
 
 args = parser.parse_args()
 api_key = ''.join(args.API_KEY)
 service_id = ''.join(args.SERVICE_ID)
 #email_from=str(args.EMAIL_FROM)
+workspace = ''.join(args.WORKSPACE)
 
 #api_key = 'Wd1wzzuFSzGm_Hx7KcU8'
 #service_id = 'PCE74N6'
@@ -61,9 +59,14 @@ FROM = 'miwalker@us.ibm.com'
 print "Checking values....."
 print api_key
 print service_id
+print workspace
 #print "EMAIL_FROM:",email_from
 
+with open(workspace,'/_toolchain.json') as f:
+    data = json.load(f)
 
+print("printing json")
+pprint(data)
 #itegration_properties = json.loads(open('${WORKSPACE}/_toolchain.json').read())
 
 #pd_apikey = integration_properties['']
