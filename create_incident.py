@@ -64,7 +64,7 @@ print service_id
 print toolchain_json
 #print "EMAIL_FROM:",email_from
 
-with open(toolchain_json, r) as f:
+with open(toolchain_json) as f:
     data = json.load(f)
 
 print("printing json")
