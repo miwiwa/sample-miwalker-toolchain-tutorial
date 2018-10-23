@@ -116,5 +116,9 @@ def trigger_incident():
     print r.json()
 
 if __name__ == '__main__':
+	print("performing recursive lookup")
+	print("=============================")
 	recursive_lookup(service_id ,data)
+	print("=============================")
+	print("Creating incident report")
 	trigger_incident()
