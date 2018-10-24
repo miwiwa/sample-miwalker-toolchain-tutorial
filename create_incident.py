@@ -66,7 +66,7 @@ print toolchain_json
 #print "EMAIL_FROM:",email_from
 
 with open(toolchain_json) as f:
-    data = json.load(f)
+    data = json.loads(f)
 
 #decode_data = {k.decode('utf8'): v.decode('utf8') for k, v in data.items()}
 print("printing json")
