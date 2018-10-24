@@ -66,7 +66,7 @@ print toolchain_json
 #print "EMAIL_FROM:",email_from
 
 with open(toolchain_json) as f:
-    data = json.loads(f)
+    data = json.load(f)
 
 #decode_data = {k.decode('utf8'): v.decode('utf8') for k, v in data.items()}
 print("printing json")
@@ -76,6 +76,7 @@ pprint(data)
 
 #pd_apikey = integration_properties['']
 
+print("printing list comprehension")
 print([i for i in data if i['services']['broker_id'] in 'pagerduty'][0])
 
 def trigger_incident():
@@ -112,8 +113,7 @@ def trigger_incident():
 
 if __name__ == '__main__':
 	print("performing recursive lookup")
-	keys = next(key for key, value in data.iteritems() if value == 'acbc82b3-4053-4218-9f20-6d8a0c82e3dfpagerduty')
-	print("Keys:",keys)
+	
 	#print "Value : %s" %  data.get("services")
 	#print (deep_get(data, "u'created'"))
 	print("=============================")
