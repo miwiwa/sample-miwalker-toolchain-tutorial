@@ -70,8 +70,8 @@ with open(toolchain_json) as f:
 
 #decode_data = {k.decode('utf8'): v.decode('utf8') for k, v in data.items()}
 print("printing json")
-print(type(decode_data))
-pprint(decode_data)
+print(type(data))
+pprint(data)
 #itegration_properties = json.loads(open('${WORKSPACE}/_toolchain.json').read())
 
 #pd_apikey = integration_properties['']
@@ -115,7 +115,7 @@ def trigger_incident():
 
 if __name__ == '__main__':
 	print("performing recursive lookup")
-	print (deep_get(decode_data, "u'creator'"))
+	print (deep_get(data, "u'creator'"))
 	print("=============================")
 	print("Creating incident report")
 	#trigger_incident()
