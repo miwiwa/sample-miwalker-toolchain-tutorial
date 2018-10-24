@@ -68,7 +68,7 @@ print toolchain_json
 with open(toolchain_json) as f:
     data = json.load(f)
 
-decode_data = {k.decode('utf8'): v.decode('utf8') for k, v in data.items()}
+#decode_data = {k.decode('utf8'): v.decode('utf8') for k, v in data.items()}
 print("printing json")
 print(type(decode_data))
 pprint(decode_data)
