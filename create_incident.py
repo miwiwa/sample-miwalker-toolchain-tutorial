@@ -68,9 +68,10 @@ print toolchain_json
 with open(toolchain_json) as f:
     data = json.load(f)
 
+decode_data = {k.decode('utf8'): v.decode('utf8') for k, v in data.items()}
 print("printing json")
-print(type(data))
-pprint(data)
+print(type(decode_data))
+pprint(decode_data)
 #itegration_properties = json.loads(open('${WORKSPACE}/_toolchain.json').read())
 
 #pd_apikey = integration_properties['']
@@ -114,7 +115,7 @@ def trigger_incident():
 
 if __name__ == '__main__':
 	print("performing recursive lookup")
-	print (deep_get(data, "services.broker_id.parameters"))
+	print (deep_get(decode_data, "services.broker_id"))
 	print("=============================")
 	print("Creating incident report")
-	trigger_incident()
+	#trigger_incident()
