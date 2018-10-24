@@ -115,7 +115,7 @@ def trigger_incident():
 
 if __name__ == '__main__':
 	print("performing recursive lookup")
-	print "Value : %s" %  data.get("u'created'")
+	print "Value : %s" %  data.get("created")
 	#print (deep_get(data, "u'created'"))
 	print("=============================")
 	print("Creating incident report")
