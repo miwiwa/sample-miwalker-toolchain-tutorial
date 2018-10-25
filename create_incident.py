@@ -79,10 +79,12 @@ with open(toolchain_json) as f:
 print("printing list comprehension")
 pd = [i for i in data["services"] if 'pagerduty' in i['broker_id']]
 print(pd)
-new_apikey = pd['parameters']['api_key']
-new_serviceid = pd['parameters']['service_id']
-print("new_apikey:",apikey)
-print("new_serviceid:",new_serviceid)
+print(pd['parameters']['api_key'])
+print(pd['parameters']['service_id'])
+#new_apikey = pd['parameters']['api_key']
+#new_serviceid = pd['parameters']['service_id']
+#print("new_apikey:",apikey)
+#print("new_serviceid:",new_serviceid)
 
 def trigger_incident():
     """Triggers an incident via the V2 REST API using sample data."""
