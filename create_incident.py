@@ -69,15 +69,19 @@ with open(toolchain_json) as f:
     data = json.load(f)
 
 #decode_data = {k.decode('utf8'): v.decode('utf8') for k, v in data.items()}
-print("printing json")
-print(type(data))
-pprint(data)
+#print("printing json")
+#print(type(data))
+#pprint(data)
 #itegration_properties = json.loads(open('${WORKSPACE}/_toolchain.json').read())
 
 #pd_apikey = integration_properties['']
 
 print("printing list comprehension")
-print([i for i in data if i['services']['broker_id'] in 'pagerduty'][0])
+pd = [i for i in myObj["services"] if 'pagerduty' in i['broker_id']]
+new_apikey = pd['parameters']['api_key']
+new_serviceid = pd['parameters']['service_id']
+print("new_apikey:",apikey)
+print("new_serviceid:",new_serviceid)
 
 def trigger_incident():
     """Triggers an incident via the V2 REST API using sample data."""
@@ -114,8 +118,6 @@ def trigger_incident():
 if __name__ == '__main__':
 	print("performing recursive lookup")
 	
-	#print "Value : %s" %  data.get("services")
-	#print (deep_get(data, "u'created'"))
 	print("=============================")
 	print("Creating incident report")
 	#trigger_incident()
