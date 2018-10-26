@@ -110,14 +110,14 @@ def trigger_incident():
     payload = {
         "incident": {
             "type": "incident",
-            "title": "Job:",ids_job_name, "Stage:", ids_stage_name,
+            "title": "Job:" ids_job_name "Stage:", ids_stage_name,
             "service": {
                 "id": service_id,
                 "type": "service_reference"
             },
             "body": {
                 "type": "incident_body",
-                "details":  ids_job_name,"in project:",ids_project_name,"failed"
+                "details":  ids_job_name "in project:" ids_project_name "failed"
             }
           }
         }
