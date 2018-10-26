@@ -77,14 +77,13 @@ with open(toolchain_json) as f:
 #pd_apikey = integration_properties['']
 
 print("printing list comprehension")
-#pd = [i for i in data["services"] if 'pagerduty' in i['broker_id']]
-pd = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-d = dict([(k, v) for k,v in zip (pd[::2], pd[1::2])])
+pd=[i['parameters']['service_id'] for i in myObj["services"] if 'pagerduty' in i['broker_id']]
 print("PD:",type(pd))
 print(pd)
-print("d:",d)
-print(pd['parameters']['api_key'][0])
-print(pd['parameters']['service_id'][0])
+service_id = pd[0]
+print("service_id",service_id)
+
+
 #new_apikey = pd['parameters']['api_key']
 #new_serviceid = pd['parameters']['service_id']
 #print("new_apikey:",apikey)
