@@ -34,6 +34,7 @@ from os import environ
 ids_job_name = environ.get('IDS_JOB_NAME')
 ids_job_id = environ.get('IDS_JOB_ID')
 ids_stage_name = environ.get('IDS_STAGE_NAME')
+ids_project_name = environ.get('IDS_PROJECT_NAME')
 workspace = environ.get('WORKSPACE')
 
 print("IDSJobName:",ids_job_name)
