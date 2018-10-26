@@ -32,8 +32,13 @@ from pprint import pprint
 from os import environ
 
 job_name = environ.get('JOB_NAME')
-print("JobName:",job_name)
+job_number = environ.get('JOB_NUMBER')
+ids_stage_name = environ.get('IDS_STAGE_NAME')
+workspace = environ.get('WORKSPACE')
 
+print("JobName:",job_name)
+print("JobName:",job_number)
+print("JobName:",ids_stage_name)
 
 
 #with open('${WORKSPACE}/_toolchain.json') as f:
