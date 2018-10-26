@@ -76,8 +76,9 @@ pd_api_key=[i['parameters']['api_key'] for i in data["services"] if 'pagerduty' 
 
 
 api_key = pd_api_key[0]
-service_id = pd[0]
-print("service_id",pd_service_id)
+service_id = pd_service_id[0]
+print("service_id", service_id)
+print("api_key", api_key)
 
 
 
