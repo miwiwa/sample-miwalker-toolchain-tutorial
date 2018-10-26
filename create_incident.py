@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 #
-## Push test
 # Copyright (c) 2016, PagerDuty, Inc. <info@pagerduty.com>
 # All rights reserved.
 #
@@ -79,6 +78,7 @@ with open(toolchain_json) as f:
 
 print("printing list comprehension")
 pd = [i for i in data["services"] if 'pagerduty' in i['broker_id']]
+print("PD:",type(pd))
 print(pd)
 print(pd['parameters']['api_key'])
 print(pd['parameters']['service_id'])
