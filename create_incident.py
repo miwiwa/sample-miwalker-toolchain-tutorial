@@ -78,8 +78,10 @@ with open(toolchain_json) as f:
 
 print("printing list comprehension")
 pd = [i for i in data["services"] if 'pagerduty' in i['broker_id']]
+d = dict([(k, v) for k,v in zip (pd[::2], pd[1::2])])
 print("PD:",type(pd))
 print(pd)
+print("d:",d)
 print(pd['parameters']['api_key'][0])
 print(pd['parameters']['service_id'][0])
 #new_apikey = pd['parameters']['api_key']
