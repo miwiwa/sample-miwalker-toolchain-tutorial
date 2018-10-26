@@ -68,26 +68,18 @@ print toolchain_json
 with open(toolchain_json) as f:
     data = json.load(f)
 
-#decode_data = {k.decode('utf8'): v.decode('utf8') for k, v in data.items()}
-#print("printing json")
-#print(type(data))
-#pprint(data)
-#itegration_properties = json.loads(open('${WORKSPACE}/_toolchain.json').read())
 
-#pd_apikey = integration_properties['']
 
 print("printing list comprehension")
-pd=[i['parameters']['service_id'] for i in myObj["services"] if 'pagerduty' in i['broker_id']]
-print("PD:",type(pd))
-print(pd)
+pd_service_id=[i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+pd_api_key=[i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+
+
+api_key = pd_api_key[0]
 service_id = pd[0]
-print("service_id",service_id)
+print("service_id",pd_service_id)
 
 
-#new_apikey = pd['parameters']['api_key']
-#new_serviceid = pd['parameters']['service_id']
-#print("new_apikey:",apikey)
-#print("new_serviceid:",new_serviceid)
 
 def trigger_incident():
     """Triggers an incident via the V2 REST API using sample data."""
