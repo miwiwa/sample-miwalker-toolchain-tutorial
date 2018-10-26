@@ -29,7 +29,10 @@ import requests
 import json
 import argparse
 from pprint import pprint
-from functools import reduce
+from os import environ
+
+job_name = environ.get('JOB_NAME')
+print("JobName:",job_name)
 
 
 
@@ -71,14 +74,17 @@ with open(toolchain_json) as f:
 
 
 print("printing list comprehension")
-pd_service_id=[i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-pd_api_key=[i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-
+pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
 
 api_key = pd_api_key[0]
 service_id = pd_service_id[0]
+user_email = pd_user_email[0]
+
 print("service_id", service_id)
 print("api_key", api_key)
+print("user_email", user_email)
 
 
 
@@ -90,7 +96,7 @@ def trigger_incident():
         'Content-Type': 'application/json',
         'Accept': 'application/vnd.pagerduty+json;version=2',
         'Authorization': 'Token token={token}'.format(token=api_key),
-        'From': 'miwalker@us.ibm.com'
+        'From': user_email
     }
 
     payload = {
@@ -101,7 +107,6 @@ def trigger_incident():
                 "id": service_id,
                 "type": "service_reference"
             },
-            #"incident_key": "baf7cf21b1da41b4b0221008339ff3571",
             "body": {
                 "type": "incident_body",
                 "details": "${JOB_NUMBER} failed"
@@ -119,4 +124,4 @@ if __name__ == '__main__':
 	
 	print("=============================")
 	print("Creating incident report")
-	#trigger_incident()
+	trigger_incident()
