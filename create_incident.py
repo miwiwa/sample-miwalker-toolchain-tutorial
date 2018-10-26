@@ -44,8 +44,8 @@ print("IDSProject_name", ids_project_name)
 print("Workspace",workspace)
 
 
-#with open('${WORKSPACE}/_toolchain.json') as f:
-#    data = json.load(f)
+with open(workspace + '/_toolchain.json') as f:
+    data = json.load(f)
 
 ##print("printing json")
 #pprint(data)
@@ -53,31 +53,31 @@ print("Workspace",workspace)
 
 parser = argparse.ArgumentParser(     description=__doc__)
 
-parser.add_argument('-a','--API_KEY', nargs='+', type=str, dest='API_KEY', help="PagerDuty API Key", required=True)
-parser.add_argument('-s','--SERVICE_ID', nargs='+', type=str, dest='SERVICE_ID', help="PagerDuty Service ID", required=True)
+#parser.add_argument('-a','--API_KEY', nargs='+', type=str, dest='API_KEY', help="PagerDuty API Key", required=True)
+#parser.add_argument('-s','--SERVICE_ID', nargs='+', type=str, dest='SERVICE_ID', help="PagerDuty Service ID", required=True)
 #parser.add_argument('-f','--EMAIL_FROM', nargs='+', dest='EMAIL_FROM', help="Add valid PagerDuty email address", required=True)
-parser.add_argument('-w','--WORKSPACE', nargs='+', type=str, dest='WORKSPACE', help="WORKSPACE for environment", required=True)
+#parser.add_argument('-w','--WORKSPACE', nargs='+', type=str, dest='WORKSPACE', help="WORKSPACE for environment", required=True)
 
-args = parser.parse_args()
-api_key = ''.join(args.API_KEY)
-service_id = ''.join(args.SERVICE_ID)
+#args = parser.parse_args()
+#api_key = ''.join(args.API_KEY)
+#service_id = ''.join(args.SERVICE_ID)
 #email_from=str(args.EMAIL_FROM)
-workspace = ''.join(args.WORKSPACE)
+#workspace = ''.join(args.WORKSPACE)
 
 toolchain_json = "%s/_toolchain.json" % workspace
 
 #api_key = 'Wd1wzzuFSzGm_Hx7KcU8'
 #service_id = 'PCE74N6'
-FROM = 'miwalker@us.ibm.com'
+#FROM = 'miwalker@us.ibm.com'
 
-print "Checking values....."
-print api_key
-print service_id
-print toolchain_json
+#print "Checking values....."
+#print api_key
+#print service_id
+#print toolchain_json
 #print "EMAIL_FROM:",email_from
 
-with open(toolchain_json) as f:
-    data = json.load(f)
+#with open(toolchain_json) as f:
+#    data = json.load(f)
 
 
 
@@ -110,14 +110,14 @@ def trigger_incident():
     payload = {
         "incident": {
             "type": "incident",
-            "title": "Job: ${JOB_NAME} Stage: ${IDS_STAGE_NAME}",
+            "title": "Job:",ids_job_name, "Stage:", ids_stage_name,
             "service": {
                 "id": service_id,
                 "type": "service_reference"
             },
             "body": {
                 "type": "incident_body",
-                "details": "${JOB_NUMBER} failed"
+                "details":  ids_job_name,"in project:",ids_project_name,"failed"
             }
           }
         }
