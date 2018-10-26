@@ -77,7 +77,8 @@ with open(toolchain_json) as f:
 #pd_apikey = integration_properties['']
 
 print("printing list comprehension")
-pd = [i for i in data["services"] if 'pagerduty' in i['broker_id']]
+#pd = [i for i in data["services"] if 'pagerduty' in i['broker_id']]
+pd = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
 d = dict([(k, v) for k,v in zip (pd[::2], pd[1::2])])
 print("PD:",type(pd))
 print(pd)
