@@ -80,8 +80,8 @@ print("printing list comprehension")
 pd = [i for i in data["services"] if 'pagerduty' in i['broker_id']]
 print("PD:",type(pd))
 print(pd)
-print(pd['parameters']['api_key'])
-print(pd['parameters']['service_id'])
+print(pd['parameters']['api_key'][0])
+print(pd['parameters']['service_id'][0])
 #new_apikey = pd['parameters']['api_key']
 #new_serviceid = pd['parameters']['service_id']
 #print("new_apikey:",apikey)
