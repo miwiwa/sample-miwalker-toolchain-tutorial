@@ -32,8 +32,6 @@ from os import environ
 
 import requests
 
-cd ${WORKSPACE}
-python create_incident.py
 ids_job_name = environ.get('IDS_JOB_NAME')
 ids_job_id = environ.get('IDS_JOB_ID')
 ids_stage_name = environ.get('IDS_STAGE_NAME')
