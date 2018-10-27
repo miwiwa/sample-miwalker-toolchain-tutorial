@@ -25,11 +25,15 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import requests
+
 import json
 import argparse
 from os import environ
 
+import requests
+
+cd ${WORKSPACE}
+python create_incident.py
 ids_job_name = environ.get('IDS_JOB_NAME')
 ids_job_id = environ.get('IDS_JOB_ID')
 ids_stage_name = environ.get('IDS_STAGE_NAME')
@@ -60,7 +64,7 @@ parser = argparse.ArgumentParser(     description=__doc__)
 def trigger_incident():
     
     """Triggers an incident via the V2 REST API using sample data."""
-    pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'gpagerduty' in i['broker_id']]
+    pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     
