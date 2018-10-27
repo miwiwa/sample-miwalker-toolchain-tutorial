@@ -28,7 +28,6 @@
 import requests
 import json
 import argparse
-from pprint import pprint
 from os import environ
 
 ids_job_name = environ.get('IDS_JOB_NAME')
@@ -37,18 +36,10 @@ ids_stage_name = environ.get('IDS_STAGE_NAME')
 ids_project_name = environ.get('IDS_PROJECT_NAME')
 workspace = environ.get('WORKSPACE')
 
-print("IDSJobName:",ids_job_name)
-print("JobID:",ids_job_id)
-print("StageName:",ids_stage_name)
-print("IDSProject_name", ids_project_name)
-print("Workspace",workspace)
+toolchain_json = "%s/_toolchain.json" % workspace
 
-
-with open(workspace + '/_toolchain.json') as f:
+with open(toolchain_json) as f:
     data = json.load(f)
-
-##print("printing json")
-#pprint(data)
 
 
 parser = argparse.ArgumentParser(     description=__doc__)
@@ -64,41 +55,10 @@ parser = argparse.ArgumentParser(     description=__doc__)
 #email_from=str(args.EMAIL_FROM)
 #workspace = ''.join(args.WORKSPACE)
 
-toolchain_json = "%s/_toolchain.json" % workspace
-
-#api_key = 'Wd1wzzuFSzGm_Hx7KcU8'
-#service_id = 'PCE74N6'
-#FROM = 'miwalker@us.ibm.com'
-
-#print "Checking values....."
-#print api_key
-#print service_id
-#print toolchain_json
-#print "EMAIL_FROM:",email_from
-
-#with open(toolchain_json) as f:
-#    data = json.load(f)
-
-
-
-#print("printing list comprehension")
-#pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-#pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-#pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-
-#api_key = pd_api_key[0]
-#service_id = pd_service_id[0]
-#user_email = pd_user_email[0]
-
-#print("service_id", service_id)
-#print("api_key", api_key)
-#print("user_email", user_email)
-
 
 
 def trigger_incident():
     
-    print("Triggering PagerDuty incident")
     """Triggers an incident via the V2 REST API using sample data."""
     pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'gpagerduty' in i['broker_id']]
     pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
@@ -109,12 +69,7 @@ def trigger_incident():
       service_id = pd_service_id[0]
       user_email = pd_user_email[0]
     except IndexError:
-      print("Pager Duty is not configured correctly with the toolchain")
-	
-	  
-    print("service_id", service_id)
-    print("api_key", api_key)
-    print("user_email", user_email)
+      print("ERROR: Pager Duty is not configured correctly with the toolchain")
 
     url = 'https://api.pagerduty.com/incidents'
     headers = {
@@ -126,8 +81,8 @@ def trigger_incident():
 
     payload = {
         "incident": {
-            "type": "incident",
-            "title": "Job:" + ids_job_name + "Stage:" + ids_stage_name,
+            "type": "inciden2t",
+            "title": "Job: " + ids_job_name + " in Stage: " + ids_stage_name + "failed" ,
             "service": {
                 "id": service_id,
                 "type": "service_reference"
