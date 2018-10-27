@@ -108,8 +108,8 @@ def trigger_incident():
       api_key = pd_api_key[0]
       service_id = pd_service_id[0]
       user_email = pd_user_email[0]
-	except IndexError:
-	  print("Pager Duty is not configured correctly with the toolchain")
+    except IndexError:
+      print("Pager Duty is not configured correctly with the toolchain")
 	
 	  
     print("service_id", service_id)
