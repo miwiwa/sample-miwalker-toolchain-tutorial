@@ -97,7 +97,11 @@ print("user_email", user_email)
 
 
 def trigger_incident():
+    
     """Triggers an incident via the V2 REST API using sample data."""
+    pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'gpagerduty' in i['broker_id']]
+	pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+	pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     
     url = 'https://api.pagerduty.com/incidents'
     headers = {
