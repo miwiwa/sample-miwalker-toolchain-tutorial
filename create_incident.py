@@ -82,8 +82,8 @@ def trigger_incident():
     }
 
     payload = {
-        "incident2": {
-            "type": "inciden2t",
+        "incident": {
+            "type": "incident",
             "title": "Job: " + ids_job_name + " in Stage: " + ids_stage_name + "failed" ,
             "service": {
                 "id": service_id,
