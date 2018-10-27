@@ -99,6 +99,12 @@ def trigger_incident():
     r = requests.post(url, headers=headers, data=json.dumps(payload))
 
     print 'Status Code: {code}'.format(code=r.status_code)
+    code=r.status_code
+    print("code:", code)
+    
+    if code != 201:
+    	print("ERROR: request did not complete successfully")
+    
     print r.json()
 
 if __name__ == '__main__':
