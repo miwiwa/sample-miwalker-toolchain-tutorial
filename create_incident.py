@@ -81,28 +81,37 @@ toolchain_json = "%s/_toolchain.json" % workspace
 
 
 
-print("printing list comprehension")
-pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+#print("printing list comprehension")
+#pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+#pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+#pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
 
-api_key = pd_api_key[0]
-service_id = pd_service_id[0]
-user_email = pd_user_email[0]
+#api_key = pd_api_key[0]
+#service_id = pd_service_id[0]
+#user_email = pd_user_email[0]
 
-print("service_id", service_id)
-print("api_key", api_key)
-print("user_email", user_email)
+#print("service_id", service_id)
+#print("api_key", api_key)
+#print("user_email", user_email)
 
 
 
 def trigger_incident():
     
+    print("Triggering PagerDuty incident")
     """Triggers an incident via the V2 REST API using sample data."""
     pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'gpagerduty' in i['broker_id']]
     pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     
+    api_key = pd_api_key[0]
+    service_id = pd_service_id[0]
+    user_email = pd_user_email[0]
+
+    print("service_id", service_id)
+    print("api_key", api_key)
+    print("user_email", user_email)
+
     url = 'https://api.pagerduty.com/incidents'
     headers = {
         'Content-Type': 'application/json',
