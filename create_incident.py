@@ -53,6 +53,7 @@ ids_job_name = environ.get('IDS_JOB_NAME')
 ids_job_id = environ.get('IDS_JOB_ID')
 ids_stage_name = environ.get('IDS_STAGE_NAME')
 ids_project_name = environ.get('IDS_PROJECT_NAME')
+ids_url = environ.get('IDS_URL')
 workspace = environ.get('WORKSPACE')
 
 toolchain_json = "%s/_toolchain.json" % workspace
@@ -108,7 +109,7 @@ def trigger_incident():
             },
             "body": {
                 "type": "incident_body",
-                "details":  ids_job_name + "in project" + ids_project_name  + "failed"
+                "details":  ids_url
             }
           }
         }
@@ -126,9 +127,6 @@ def trigger_incident():
     print r.json()
 
 if __name__ == '__main__':
-	#print("Installing request package")
-	#import_or_install('requests')
-	#print("performing recursive lookup")
 	
 	print("=============================")
 	print("Creating incident report")
