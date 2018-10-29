@@ -30,7 +30,7 @@ import json
 import argparse
 from os import environ
 
-#import requests
+
 
 package = 'requests'
 
@@ -38,6 +38,8 @@ import pip
 
 print("Importing requests")
 pip.main(['install', package])
+
+import requests
 
 #def import_or_install(package):
 #    try:
