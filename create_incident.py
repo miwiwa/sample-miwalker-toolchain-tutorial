@@ -118,7 +118,7 @@ def trigger_incident():
 
 if __name__ == '__main__':
 	print("Installing request package")
-	import_or_install(requests)
+	import_or_install('requests')
 	print("performing recursive lookup")
 	
 	print("=============================")
