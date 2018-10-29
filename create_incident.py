@@ -37,7 +37,11 @@ package = 'requests'
 import pip
 
 print("Importing requests")
-pip.main(['install', package])
+
+packages = [package.project_name for package in pip.get_installed_distributions()]
+if 'package' not in packages:
+    pip.main(['install', package])
+#pip.main(['install', package])
 
 import requests
 
@@ -102,7 +106,7 @@ def trigger_incident():
     payload = {
         "incident": {
             "type": "incident",
-            "title": "Job: " + ids_job_name + " in Stage: " + ids_stage_name + "failed" ,
+            "title": "Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed" ,
             "service": {
                 "id": service_id,
                 "type": "service_reference"
@@ -124,7 +128,7 @@ def trigger_incident():
     	print("ERROR: PagerDuty incident request did not complete successfully")
         exit()
     
-    print r.json()
+    #print r.json()
 
 if __name__ == '__main__':
 	
