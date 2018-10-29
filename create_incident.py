@@ -36,8 +36,10 @@ import pip
 
 def import_or_install(package):
     try:
+        print("Attempting to import " + package)
         __import__(package)
     except ImportError:
+    	print("Attempting to install " + package)
         pip.main(['install', package])
         
 ids_job_name = environ.get('IDS_JOB_NAME')
