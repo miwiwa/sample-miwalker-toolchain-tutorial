@@ -41,7 +41,9 @@ def import_or_install(package):
     except ImportError:
     	print("Attempting to install " + package)
         pip.main(['install', package])
-        
+
+import_or_install('requests')
+       
 ids_job_name = environ.get('IDS_JOB_NAME')
 ids_job_id = environ.get('IDS_JOB_ID')
 ids_stage_name = environ.get('IDS_STAGE_NAME')
