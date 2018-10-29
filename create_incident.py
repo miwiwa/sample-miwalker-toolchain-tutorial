@@ -30,8 +30,16 @@ import json
 import argparse
 from os import environ
 
-import requests
+#import requests
 
+import pip
+
+def import_or_install(package):
+    try:
+        __import__(package)
+    except ImportError:
+        pip.main(['install', package])
+        
 ids_job_name = environ.get('IDS_JOB_NAME')
 ids_job_id = environ.get('IDS_JOB_ID')
 ids_stage_name = environ.get('IDS_STAGE_NAME')
@@ -109,6 +117,8 @@ def trigger_incident():
     print r.json()
 
 if __name__ == '__main__':
+	print("Installing request package")
+	import_or_install(requests)
 	print("performing recursive lookup")
 	
 	print("=============================")
