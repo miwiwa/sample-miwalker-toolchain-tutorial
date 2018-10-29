@@ -36,12 +36,15 @@ package = 'requests'
 
 import pip
 
+pip.main(['install', package])
+
 print("Importing requests")
 
 packages = [package.project_name for package in pip.get_installed_distributions()]
 if 'package' not in packages:
+	print("installing requests twice")
     pip.main(['install', package])
-#pip.main(['install', package])
+
 
 import requests
 
