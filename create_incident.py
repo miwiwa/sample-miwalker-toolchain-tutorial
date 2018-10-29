@@ -42,7 +42,7 @@ print("Importing requests")
 
 packages = [package.project_name for package in pip.get_installed_distributions()]
 if 'package' not in packages:
-	print("installing requests twice")
+    print("installing requests twice")
     pip.main(['install', package])
 
 
@@ -131,7 +131,7 @@ def trigger_incident():
     	print("ERROR: PagerDuty incident request did not complete successfully")
         exit()
     
-    #print r.json()
+    print r.json()
 
 if __name__ == '__main__':
 	
