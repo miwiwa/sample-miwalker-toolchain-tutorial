@@ -35,15 +35,17 @@ from os import environ
 package = 'requests'
 
 import pip
+
+print("Importing requests")
 pip.main(['install', package])
 
-def import_or_install(package):
-    try:
-        print("Attempting to import " + package)
-        __import__(package)
-    except ImportError:
-    	print("Attempting to install " + package)
-        pip.main(['install', package])
+#def import_or_install(package):
+#    try:
+#        print("Attempting to import " + package)
+#        __import__(package)
+#    except ImportError:
+#    	print("Attempting to install " + package)
+#        pip.main(['install', package])
 
 ids_job_name = environ.get('IDS_JOB_NAME')
 ids_job_id = environ.get('IDS_JOB_ID')
@@ -122,9 +124,9 @@ def trigger_incident():
     print r.json()
 
 if __name__ == '__main__':
-	print("Installing request package")
-	import_or_install('requests')
-	print("performing recursive lookup")
+	#print("Installing request package")
+	#import_or_install('requests')
+	#print("performing recursive lookup")
 	
 	print("=============================")
 	print("Creating incident report")
