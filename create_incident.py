@@ -49,13 +49,7 @@ if package not in packages:
 
 import requests
 
-#def import_or_install(package):
-#    try:
-#        print("Attempting to import " + package)
-#        __import__(package)
-#    except ImportError:
-#    	print("Attempting to install " + package)
-#        pip.main(['install', package])
+
 
 ids_job_name = environ.get('IDS_JOB_NAME')
 ids_job_id = environ.get('IDS_JOB_ID')
@@ -69,21 +63,23 @@ toolchain_json = "%s/_toolchain.json" % workspace
 with open(toolchain_json) as f:
     data = json.load(f)
 
-
+description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
+   
 parser = argparse.ArgumentParser(     description=__doc__)
 
-#parser.add_argument('-a','--API_KEY', nargs='+', type=str, dest='API_KEY', help="PagerDuty API Key", required=True)
+parser.add_argument('-a','--ALERTS', nargs='+', type=str, dest='--ALERTS', help="Enter 'PagerDuty' and/or 'Git' to open incident/issue", required=True)
 #parser.add_argument('-s','--SERVICE_ID', nargs='+', type=str, dest='SERVICE_ID', help="PagerDuty Service ID", required=True)
 #parser.add_argument('-f','--EMAIL_FROM', nargs='+', dest='EMAIL_FROM', help="Add valid PagerDuty email address", required=True)
 #parser.add_argument('-w','--WORKSPACE', nargs='+', type=str, dest='WORKSPACE', help="WORKSPACE for environment", required=True)
 
-#args = parser.parse_args()
-#api_key = ''.join(args.API_KEY)
+args = parser.parse_args()
+alerts = ''.join(args.ALERTS)
 #service_id = ''.join(args.SERVICE_ID)
 #email_from=str(args.EMAIL_FROM)
 #workspace = ''.join(args.WORKSPACE)
 
-
+print("Alerts:",alerts)
+print(type(alerts))
 
 def trigger_incident():
     
@@ -132,10 +128,10 @@ def trigger_incident():
     	print("ERROR: PagerDuty incident request did not complete successfully")
         exit()
     
-    print r.json()
 
-if __name__ == '__main__':
-	
+if __name__ == '__main__':	
 	print("=============================")
 	print("Creating incident report")
 	trigger_incident()
+	else:
+		print("PagerDuty not selected")
