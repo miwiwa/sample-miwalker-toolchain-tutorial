@@ -131,9 +131,12 @@ def trigger_incident():
     if code != 201:
     	print("ERROR: PagerDuty incident request did not complete successfully")
         exit()
-    
+	
+	print r.json()
+  
 
 if __name__ == '__main__':	
 	print("=============================")
 	print("Creating incident report")
-	trigger_incident()
+	if 'pagerduty' in alerts:		
+		trigger_incident()
