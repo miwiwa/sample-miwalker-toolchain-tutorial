@@ -132,3 +132,6 @@ if __name__ == '__main__':
 	print("Creating incident report")
 	if 'pagerdut5y' in alerts:		
 		trigger_incident()
+	else:
+		print("pagerduty incident not created")
+	
