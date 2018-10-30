@@ -40,13 +40,6 @@ pip.main(['install', package])
 
 print("Importing requests")
 
-packages = [package.project_name for package in pip.get_installed_distributions()]
-print("packages:",packages)
-if package not in packages:
-    print("installing requests twice")
-    pip.main(['install', package])
-
-
 import requests
 
 
@@ -124,7 +117,7 @@ def trigger_incident():
 
     r = requests.post(url, headers=headers, data=json.dumps(payload))
 
-   
+   	print(r.json())
     code=r.status_code
     
     
@@ -132,11 +125,11 @@ def trigger_incident():
     	print("ERROR: PagerDuty incident request did not complete successfully")
         exit()
 	
-	print r.json()
+	
   
 
 if __name__ == '__main__':	
 	print("=============================")
 	print("Creating incident report")
-	if 'pagerduty' in alerts:		
+	if 'pagerdut5y' in alerts:		
 		trigger_incident()
