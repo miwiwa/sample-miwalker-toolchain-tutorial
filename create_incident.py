@@ -133,5 +133,3 @@ if __name__ == '__main__':
 	print("=============================")
 	print("Creating incident report")
 	trigger_incident()
-	else:
-		print("PagerDuty not selected")
