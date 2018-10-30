@@ -116,9 +116,8 @@ def trigger_incident():
         }
 
     r = requests.post(url, headers=headers, data=json.dumps(payload))
-
-	print(r.json())
-	code=r.status_code
+    print(r.json())
+    code=r.status_code
     
     
     if code != 201:
