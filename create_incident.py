@@ -60,7 +60,7 @@ description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
    
 parser = argparse.ArgumentParser(     description=__doc__)
 
-parser.add_argument('-a','--ALERTS', nargs='+', type=str, dest='ALERTS', help="Enter 'PagerDuty' and/or 'Git' to open incident/issue", required=True)
+parser.add_argument('-a','--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'PagerDuty' and/or 'Git' to open incident/issue", required=True)
 #parser.add_argument('-s','--SERVICE_ID', nargs='+', type=str, dest='SERVICE_ID', help="PagerDuty Service ID", required=True)
 #parser.add_argument('-f','--EMAIL_FROM', nargs='+', dest='EMAIL_FROM', help="Add valid PagerDuty email address", required=True)
 #parser.add_argument('-w','--WORKSPACE', nargs='+', type=str, dest='WORKSPACE', help="WORKSPACE for environment", required=True)
@@ -130,7 +130,7 @@ def trigger_incident():
 if __name__ == '__main__':	
 	print("=============================")
 	print("Creating incident report")
-	if 'pagerdut5y' in alerts:		
+	if 'pagerduty' in alerts:		
 		trigger_incident()
 	else:
 		print("pagerduty incident not created")
