@@ -73,7 +73,11 @@ parser.add_argument('-a','--ALERTS', nargs='+', type=str, dest='--ALERTS', help=
 #parser.add_argument('-w','--WORKSPACE', nargs='+', type=str, dest='WORKSPACE', help="WORKSPACE for environment", required=True)
 
 args = parser.parse_args()
-alerts = ''.join(args.ALERTS)
+print("List of items: {}".format(args.ALERTS))
+alerts = args.ALERTS
+print("Alerts:",alerts)
+
+#alerts = ''.join(args.ALERTS)
 #service_id = ''.join(args.SERVICE_ID)
 #email_from=str(args.EMAIL_FROM)
 #workspace = ''.join(args.WORKSPACE)
