@@ -5,18 +5,18 @@
 #import requests
 import json
 import argparse
-import subprocess
+#import subprocess
 
 package = 'requests'
-
+package_subprocess = 'subprocess'
 import pip
 
 pip.main(['install', package])
-
+pip.main(['install', package_subprocess])
 print("Importing requests")
 
 import requests
-
+import subprocess
 
 # Requires user to pass in 4 parameters:  Their Git username and password which must have read/write access to repo. In addition, the script
 # requires the Git repo and owner names
