@@ -60,16 +60,9 @@ print(git_parameters)
 git_username = git_parameters[2]
 git_password = git_parameters[3]
 
-print("git_username:",git_username)
-print("git_password:",git_password)
+print("git_username: " + git_username)
+print("git_password: " + git_password)
 
-#GIT_REMOTE_URL=$( git config --get remote.origin.url )
-##GIT_USER=$( echo ${GIT_REMOTE_URL} | cut -d/ -f3 | cut -d: -f1 )
-#GIT_PASSWORD=$( echo ${GIT_REMOTE_URL} | cut -d: -f3 | cut -d@ -f1 )
-
-print("GIT_REMOTE_URL:",git_remote_url)
-#print("GIT_USER:",GIT_USER)
-#print("GIT_PASSWORD:",GIT_PASSWORD)
 
 pd_github = [i['parameters'] for i in data["services"] if 'github' in i['broker_id']]
 print("pd_github: ", pd_github)
