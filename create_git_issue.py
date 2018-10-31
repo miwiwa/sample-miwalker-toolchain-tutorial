@@ -5,16 +5,17 @@
 #import requests
 import json
 import argparse
-#import subprocess
+import subprocess
 from os import environ
-import os
+import re
+
 
 package = 'requests'
-package_subprocess = 'subprocess'
+
 import pip
 
 pip.main(['install', package])
-#pip.main(['install', package_subprocess])
+
 print("Importing requests")
 
 import requests
@@ -48,10 +49,11 @@ git_password = ''.join(args.GIT_PASSWORD)
 repo_owner = ''.join(args.REPO_OWNER)
 repo_name = ''.join(args.REPO_NAME)
 
-#cmd = "git config --get remote.origin.url"
 
 git_remote_url = subprocess.check_output(['git','config','--get','remote.origin.url'],stderr= subprocess.STDOUT)
 
+pattern = re.compile(r"//|,|@")
+print("pattern:",pattern.split(git_remote_url))
 
 #GIT_REMOTE_URL=$( git config --get remote.origin.url )
 ##GIT_USER=$( echo ${GIT_REMOTE_URL} | cut -d/ -f3 | cut -d: -f1 )
