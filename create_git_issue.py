@@ -9,11 +9,11 @@ import argparse
 from os import environ
 
 package = 'requests'
-#package_subprocess = 'subprocess'
+package_subprocess = 'subprocess'
 import pip
 
 pip.main(['install', package])
-#pip.main(['install', package_subprocess])
+pip.main(['install', package_subprocess])
 print("Importing requests")
 
 import requests
