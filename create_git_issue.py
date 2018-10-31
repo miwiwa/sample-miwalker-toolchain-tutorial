@@ -18,6 +18,11 @@ print("Importing requests")
 import requests
 #import subprocess
 
+toolchain_json = "%s/_toolchain.json" % workspace
+
+with open(toolchain_json) as f:
+    data = json.load(f)
+
 # Requires user to pass in 4 parameters:  Their Git username and password which must have read/write access to repo. In addition, the script
 # requires the Git repo and owner names
 
