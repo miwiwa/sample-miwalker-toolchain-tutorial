@@ -36,14 +36,14 @@ repo_name = ''.join(args.REPO_NAME)
 
 cmd = "git config --get remote.origin.url"
 
-git_remote_url = subprocess.check_output(cmd)
+#git_remote_url = subprocess.check_output(cmd)
 
 
 #GIT_REMOTE_URL=$( git config --get remote.origin.url )
 ##GIT_USER=$( echo ${GIT_REMOTE_URL} | cut -d/ -f3 | cut -d: -f1 )
 #GIT_PASSWORD=$( echo ${GIT_REMOTE_URL} | cut -d: -f3 | cut -d@ -f1 )
 
-print("GIT_REMOTE_URL:",git_remote_url)
+#print("GIT_REMOTE_URL:",git_remote_url)
 #print("GIT_USER:",GIT_USER)
 #print("GIT_PASSWORD:",GIT_PASSWORD)
 
