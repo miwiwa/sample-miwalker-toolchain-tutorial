@@ -17,7 +17,7 @@ pip.main(['install', package])
 print("Importing requests")
 
 import requests
-#import subprocess
+import subprocess
 
 ids_job_name = environ.get('IDS_JOB_NAME')
 ids_job_id = environ.get('IDS_JOB_ID')
