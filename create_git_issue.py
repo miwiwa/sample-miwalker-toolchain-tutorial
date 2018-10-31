@@ -13,12 +13,8 @@ package = 'requests'
 package_subprocess = 'subprocess'
 import pip
 
-print("upgrading pip")
-cmd="pip install --upgrade pip==18.1"
-os_system = os.system(cmd)
-print("os_system:",os_system)
 pip.main(['install', package])
-pip.main(['install', package_subprocess])
+#pip.main(['install', package_subprocess])
 print("Importing requests")
 
 import requests
