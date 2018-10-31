@@ -8,15 +8,15 @@ import argparse
 #import subprocess
 
 package = 'requests'
-package_subprocess = 'subprocess'
+#package_subprocess = 'subprocess'
 import pip
 
 pip.main(['install', package])
-pip.main(['install', package_subprocess])
+#pip.main(['install', package_subprocess])
 print("Importing requests")
 
 import requests
-import subprocess
+#import subprocess
 
 # Requires user to pass in 4 parameters:  Their Git username and password which must have read/write access to repo. In addition, the script
 # requires the Git repo and owner names
@@ -47,6 +47,8 @@ print("GIT_REMOTE_URL:",git_remote_url)
 #print("GIT_USER:",GIT_USER)
 #print("GIT_PASSWORD:",GIT_PASSWORD)
 
+pd_github = [i['parameters'] for i in data["services"] if 'github' in i['broker_id']]
+print("pd_github: ", pd_github)
 
 def trigger_issue(title, body=None, labels=None):
     """Triggers an incident via the V2 REST API using sample data."""
