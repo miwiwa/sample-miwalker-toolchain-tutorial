@@ -14,7 +14,7 @@ package_subprocess = 'subprocess'
 import pip
 
 print("upgrading pip")
-cmd="pip install --upgrade pip")
+cmd="pip install --upgrade pip"
 os.system(cmd)
 pip.main(['install', package])
 pip.main(['install', package_subprocess])
