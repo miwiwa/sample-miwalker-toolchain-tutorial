@@ -2,10 +2,21 @@
 # Script will create a Git issue in specified repository passed in.  Currently only working with github.com
 
 
-import requests
+#import requests
 import json
 import argparse
 import subprocess
+
+package = 'requests'
+
+import pip
+
+pip.main(['install', package])
+
+print("Importing requests")
+
+import requests
+
 
 # Requires user to pass in 4 parameters:  Their Git username and password which must have read/write access to repo. In addition, the script
 # requires the Git repo and owner names
