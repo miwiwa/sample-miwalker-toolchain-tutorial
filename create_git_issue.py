@@ -6,6 +6,7 @@
 import json
 import argparse
 #import subprocess
+from os import environ
 
 package = 'requests'
 #package_subprocess = 'subprocess'
@@ -17,6 +18,13 @@ print("Importing requests")
 
 import requests
 #import subprocess
+
+ids_job_name = environ.get('IDS_JOB_NAME')
+ids_job_id = environ.get('IDS_JOB_ID')
+ids_stage_name = environ.get('IDS_STAGE_NAME')
+ids_project_name = environ.get('IDS_PROJECT_NAME')
+ids_url = environ.get('IDS_URL')
+workspace = environ.get('WORKSPACE')
 
 toolchain_json = "%s/_toolchain.json" % workspace
 
