@@ -7,11 +7,13 @@ import json
 import argparse
 #import subprocess
 from os import environ
+import os
 
 package = 'requests'
 package_subprocess = 'subprocess'
 import pip
 
+os.system("pip install --upgrade pip")
 pip.main(['install', package])
 pip.main(['install', package_subprocess])
 print("Importing requests")
