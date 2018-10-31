@@ -49,8 +49,7 @@ def trigger_issue(title, body=None, labels=None):
   	# Create the issue
     issue = {'title': title,
              'body': body,
-             'labels': lab
-             els}
+             'labels': labels}
     # Add the issue to the Git repository
     r = session.post(url, json.dumps(issue))
     if r.status_code == 201:
