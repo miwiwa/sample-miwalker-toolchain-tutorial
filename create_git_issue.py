@@ -53,7 +53,9 @@ repo_name = ''.join(args.REPO_NAME)
 git_remote_url = subprocess.check_output(['git','config','--get','remote.origin.url'],stderr= subprocess.STDOUT)
 
 pattern = re.compile(r"//|:|@")
-print("pattern:",pattern.split(git_remote_url))
+git_parameters = "pattern:",pattern.split(git_remote_url)
+print(type(git_parameters))
+print(git_parameters)
 
 #GIT_REMOTE_URL=$( git config --get remote.origin.url )
 ##GIT_USER=$( echo ${GIT_REMOTE_URL} | cut -d/ -f3 | cut -d: -f1 )
