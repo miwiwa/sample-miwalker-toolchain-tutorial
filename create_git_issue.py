@@ -5,6 +5,7 @@
 import requests
 import json
 import argparse
+import subprocess
 
 # Requires user to pass in 4 parameters:  Their Git username and password which must have read/write access to repo. In addition, the script
 # requires the Git repo and owner names
@@ -22,13 +23,17 @@ git_password = ''.join(args.GIT_PASSWORD)
 repo_owner = ''.join(args.REPO_OWNER)
 repo_name = ''.join(args.REPO_NAME)
 
-GIT_REMOTE_URL=$( git config --get remote.origin.url )
-GIT_USER=$( echo ${GIT_REMOTE_URL} | cut -d/ -f3 | cut -d: -f1 )
-GIT_PASSWORD=$( echo ${GIT_REMOTE_URL} | cut -d: -f3 | cut -d@ -f1 )
 
-print("GIT_REMOTE_URL:",GIT_REMOTE_URL)
-print("GIT_USER:",GIT_USER)
-print("GIT_PASSWORD:",GIT_PASSWORD)
+result = subprocess.check_output(['git','config','--get','remote.orgin.url'])
+
+
+#GIT_REMOTE_URL=$( git config --get remote.origin.url )
+##GIT_USER=$( echo ${GIT_REMOTE_URL} | cut -d/ -f3 | cut -d: -f1 )
+#GIT_PASSWORD=$( echo ${GIT_REMOTE_URL} | cut -d: -f3 | cut -d@ -f1 )
+print("Result:", result)
+#print("GIT_REMOTE_URL:",GIT_REMOTE_URL)
+#print("GIT_USER:",GIT_USER)
+#print("GIT_PASSWORD:",GIT_PASSWORD)
 
 
 def trigger_issue(title, body=None, labels=None):
