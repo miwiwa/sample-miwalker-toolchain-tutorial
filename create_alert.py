@@ -131,8 +131,8 @@ if __name__ == '__main__':
 	print("Creating incident report")
 	if 'incident' in alerts:		
 		trigger_incident()
-	elif 'issue' in alerts:
+	if 'issue' in alerts:
 		trigger_issue('git title', 'git body', ['bug'])
-	else:
-		print("pagerduty incident not created")
+	
+
 	
