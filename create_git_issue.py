@@ -33,24 +33,6 @@ toolchain_json = "%s/_toolchain.json" % workspace
 with open(toolchain_json) as f:
     data = json.load(f)
 
-# Requires user to pass in 4 parameters:  Their Git username and password which must have read/write access to repo. In addition, the script
-# requires the Git repo and owner names
-
-#parser = argparse.ArgumentParser(     description=__doc__)
-
-#parser.add_argument('-u','--GIT_USERNAME', nargs='+', type=str, dest='GIT_USERNAME', help="Git userid to repo that has read/write access", required=True)
-#parser.add_argument('-p','--GIT_PASSWORD', nargs='+', type=str, dest='GIT_PASSWORD', help="Git password to repo that has read/write access", required=True)
-#parser.add_argument('-o','--REPO_OWNER', nargs='+', type=str, dest='REPO_OWNER', help="Owner of repo to create issue in", required=True)
-#parser.add_argument('-n','--REPO_NAME', nargs='+', type=str, dest='REPO_NAME', help="Name of repo to create issue in", required=True)
-
-#args = parser.parse_args()
-#git_username = ''.join(args.GIT_USERNAME)
-#git_password = ''.join(args.GIT_PASSWORD)
-#repo_owner = ''.join(args.REPO_OWNER)
-#repo_name = ''.join(args.REPO_NAME)
-
-
-
 
 def trigger_issue(title, body=None, labels=None):
    
@@ -58,18 +40,14 @@ def trigger_issue(title, body=None, labels=None):
 
     pattern = re.compile(r"//|:|@")
     git_parameters = pattern.split(git_remote_url)
-    print(type(git_parameters))
-    print(git_parameters)
+    
 
     git_username = git_parameters[2]
     git_password = git_parameters[3]
 
-    print("git_username: " + git_username)
-    print("git_password: " + git_password)
     repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'github' in i['broker_id']]
     repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'github' in i['broker_id']]
-    #pd_github = [i['parameters'] for i in data["services"] if 'github' in i['broker_id']]
-    #print("pd_github: ", pd_github)
+    
 
     try:
       git_repo_owner = repo_owner[0]
