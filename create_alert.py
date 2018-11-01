@@ -102,7 +102,7 @@ def trigger_issue(title, body=None, labels=None):
       git_repo_owner = repo_owner[0]
       git_repo_name = repo_name[0]
     except IndexError:
-      print("ERROR: Pager Duty is not configured correctly with the toolchain")
+      print("ERROR: Git Issues is not configured correctly with the toolchain")
 
     # Specifies URL for github api
     url = 'https://api.github.com/repos/%s/%s/issues' % (git_repo_owner, git_repo_name)
