@@ -66,8 +66,8 @@ def trigger_issue(title, body=None, labels=None):
 
     print("git_username: " + git_username)
     print("git_password: " + git_password)
-    repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-    repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+    repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'github' in i['broker_id']]
+    repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'github' in i['broker_id']]
     #pd_github = [i['parameters'] for i in data["services"] if 'github' in i['broker_id']]
     #print("pd_github: ", pd_github)
 
