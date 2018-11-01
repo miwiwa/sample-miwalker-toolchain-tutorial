@@ -56,22 +56,22 @@ def trigger_issue(title, body=None, labels=None):
    
     git_remote_url = subprocess.check_output(['git','config','--get','remote.origin.url'],stderr= subprocess.STDOUT)
 
-	pattern = re.compile(r"//|:|@")
-	git_parameters = pattern.split(git_remote_url)
-	print(type(git_parameters))
-	print(git_parameters)
+    pattern = re.compile(r"//|:|@")
+    git_parameters = pattern.split(git_remote_url)
+    print(type(git_parameters))
+    print(git_parameters)
 
-	git_username = git_parameters[2]
-	git_password = git_parameters[3]
+    git_username = git_parameters[2]
+    git_password = git_parameters[3]
 
-	print("git_username: " + git_username)
-	print("git_password: " + git_password)
+    print("git_username: " + git_username)
+    print("git_password: " + git_password)
     repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-	repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'pagerduty' in i['broker_id']]
-	#pd_github = [i['parameters'] for i in data["services"] if 'github' in i['broker_id']]
-	#print("pd_github: ", pd_github)
+    repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'pagerduty' in i['broker_id']]
+    #pd_github = [i['parameters'] for i in data["services"] if 'github' in i['broker_id']]
+    #print("pd_github: ", pd_github)
 
-	try:
+    try:
       git_repo_owner = repo_owner[0]
       git_repo_name = repo_name[0]
     except IndexError:
