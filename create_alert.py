@@ -134,6 +134,10 @@ def trigger_issue(title, body=None, labels=None):
 if __name__ == '__main__':	
 	print("=============================")
 	print("Creating alerts")
+	
+	[x for x in ['incident','issue'] if x in alerts]
+	print("x:",x)
+	
 	if 'incident' in alerts:		
 		trigger_incident()
 	if 'issue' in alerts:
