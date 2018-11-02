@@ -146,7 +146,7 @@ if __name__ == '__main__':
 		trigger_incident()
 	elif 'issue' in alerts:
 		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", ids_url, ['bug'])
-	else
+	else:
 		print("Alert type was not specified in call")
 
 	
