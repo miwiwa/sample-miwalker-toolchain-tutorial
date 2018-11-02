@@ -84,7 +84,7 @@ def trigger_incident():
     if code != 201:
     	print("ERROR: PagerDuty incident request did not complete successfully")
         exit()
-	else:
+    else:
 		print("ERROR: PagerDuty incident request created successfully")
 		
 def trigger_issue(title, body=None, labels=None):
@@ -137,7 +137,7 @@ if __name__ == '__main__':
 	if 'incident' in alerts:		
 		trigger_incident()
 	if 'issue' in alerts:
-		trigger_issue('git title', 'git body', ['bug'])
+		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", ids_url, ['bug'])
 	
 
 	
