@@ -137,14 +137,16 @@ if __name__ == '__main__':
 	print("=============================")
 	print("Creating alerts")
 	
-	if all(current_word in alerts for current_word in ('incident', 'issue')):
-	#[x for x in ['incident','issue'] if x in alerts]
-		print("both words in list")
-	
-	if 'incident' in alerts:		
+	if all(alert_type in alerts for alert_type in ('incident', 'issue')):
+		print("Creating PagerDuty incident....")
 		trigger_incident()
-	if 'issue' in alerts:
+		print("Creating Git issue....")
+		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", ids_url, ['bug'])	
+	elif 'incident' in alerts:		
+		trigger_incident()
+	elif 'issue' in alerts:
 		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", ids_url, ['bug'])
-	
+	else
+		print("Alert type was not specified in call")
 
 	
