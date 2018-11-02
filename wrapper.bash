@@ -11,7 +11,7 @@ echo $qa_test
 
 if [[ qa_test != 0 ]]
 then
-	$(python create_alert.py -a $incident $issue)
+	usr/bin/python python create_alert.py -a $incident $issue
 else
 	echo "tests passed"
 fi
