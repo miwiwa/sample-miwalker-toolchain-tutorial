@@ -1,19 +1,27 @@
 #!/usr/bin/env python
-#
+# Program submits PagerDuty incidents or Git issues upon request
 
+import pip
+package = 'requests'
+pip.main(['install', package])
+
+import requests
 import json
 import argparse
 from os import environ
 import subprocess
 import re
 
+# Read in argument(s)
+description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
+   
+parser = argparse.ArgumentParser(     description=__doc__)
+parser.add_argument('-a','--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'PagerDuty' and/or 'Git' to open incident/issue", required=True)
 
-package = 'requests'
-import pip
-pip.main(['install', package])
-import requests
+args = parser.parse_args()
+alerts = args.ALERTS
 
-
+# Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
 ids_job_id = environ.get('IDS_JOB_ID')
 ids_stage_name = environ.get('IDS_STAGE_NAME')
@@ -21,37 +29,29 @@ ids_project_name = environ.get('IDS_PROJECT_NAME')
 ids_url = environ.get('IDS_URL')
 workspace = environ.get('WORKSPACE')
 
+# Load toolchain json to dict for parsing
 toolchain_json = "%s/_toolchain.json" % workspace
 
 with open(toolchain_json) as f:
     data = json.load(f)
 
-description = 'Specify creation of incident/issue in Pagerduty and Git Issues'
-   
-parser = argparse.ArgumentParser(     description=__doc__)
-
-parser.add_argument('-a','--ALERTS', nargs='+', type=str.lower, dest='ALERTS', help="Enter 'PagerDuty' and/or 'Git' to open incident/issue", required=True)
-
-args = parser.parse_args()
-print("List of items: {}".format(args.ALERTS))
-alerts = args.ALERTS
-print("Alerts:",alerts)
-
-
 def trigger_incident():
+	# Function creates request to create new PagerDuty incident and submits
     
-    """Triggers an incident via the V2 REST API using sample data."""
+    # Parse dict for PagerDuty parameters 
     pd_service_id = [i['parameters']['service_id'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     pd_api_key = [i['parameters']['api_key'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     pd_user_email = [i['parameters']['user_email'] for i in data["services"] if 'pagerduty' in i['broker_id']]
     
+    # Retrieve values from resulting list. If values do not exist then 
     try:
       api_key = pd_api_key[0]
       service_id = pd_service_id[0]
       user_email = pd_user_email[0]
     except IndexError:
       print("ERROR: Pager Duty is not configured correctly with the toolchain")
-
+	
+	# Develop request to create incident through API
     url = 'https://api.pagerduty.com/incidents'
     headers = {
         'Content-Type': 'application/json',
@@ -74,27 +74,31 @@ def trigger_incident():
             }
           }
         }
-
+	
+	# Send request to PagerDuty
     r = requests.post(url, headers=headers, data=json.dumps(payload))
-    print(r.json())
+    
     code=r.status_code
     
-    
+    # Check if request was successful. If not successful then fail the job   
     if code != 201:
     	print("ERROR: PagerDuty incident request did not complete successfully")
         exit()
-
+	else:
+		print("ERROR: PagerDuty incident request created successfully")
+		
 def trigger_issue(title, body=None, labels=None):
+	# Function creates request to create Git Issue and submits
    
+    # Retrieve values necessary to submit request through Git API.
+    # Note: Values not available in toolchain.json
     git_remote_url = subprocess.check_output(['git','config','--get','remote.origin.url'],stderr= subprocess.STDOUT)
-
     pattern = re.compile(r"//|:|@")
     git_parameters = pattern.split(git_remote_url)
-    
-
     git_username = git_parameters[2]
     git_password = git_parameters[3]
-
+	
+	# Retrieve owner and name of repo from toolchain.json
     repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'github' in i['broker_id']]
     repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'github' in i['broker_id']]
     
@@ -115,20 +119,21 @@ def trigger_issue(title, body=None, labels=None):
     issue = {'title': title,
              'body': body,
              'labels': labels}
-    # Add the issue to the Git repository
+    
+    # Post the issue to the Git repository
     r = session.post(url, json.dumps(issue))
-    if r.status_code == 201:
-        print ('Successfully created Issue {0:s}'.format(title))
-        print ('Response:', r.content)
+    
+    if r.status_code != 201:
+    	print ('Could not create Git Issue {0:s}'.format(title))
+        exit()   
     else:
-        print ('Could not create Issue {0:s}'.format(title))
-        print ('Response:', r.content)	
-	
-  
+        print ('Successfully created Git Issue {0:s}'.format(title))
+        
+	 
 
 if __name__ == '__main__':	
 	print("=============================")
-	print("Creating incident report")
+	print("Creating alerts")
 	if 'incident' in alerts:		
 		trigger_incident()
 	if 'issue' in alerts:
