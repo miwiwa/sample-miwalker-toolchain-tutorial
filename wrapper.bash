@@ -4,7 +4,9 @@ executable_script=$1
 incident=$2
 issue=$3
 
-qa_test=$(node $executable_script lint) > output.txt
+echo "executable script: $executable_script"
+
+qa_test="$(node $executable_script lint)"
 
 echo "outputting output.txt"
 cat output.txt
