@@ -39,10 +39,14 @@ with open(toolchain_json) as f:
 
 print(type(data))
 
-print(data['region_id'])
+ids_region_id = data['region_id'])
 
-ids_instance_id = [i['instance_id'][0] for i in data["services"] if 'pipeline' in i['broker_id']]
- 
+instance_id = [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]
+ids_instance_id = instance_id[0]
+
+pipeline_base_url = "https://console.bluemix.net/devops/pipelines/" 
+pipeline_full_url = pipeline_base_url + ids_instance_id + "?env_id=" + ids_region_id
+
 #print("ids_region_id:", ids_region_id)
 print("ids_instance_id:", ids_instance_id)
 
@@ -151,11 +155,11 @@ if __name__ == '__main__':
 		print("Creating PagerDuty incident....")
 		trigger_incident()
 		print("Creating Git issue....")
-		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", ids_url, ['bug'])	
+		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", pipeline_full_url, ['bug'])	
 	elif 'incident' in alerts:		
 		trigger_incident()
 	elif 'issue' in alerts:
-		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", ids_url, ['bug'])
+		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", pipeline_full_url, ['bug'])
 	else:
 		print("Alert type was not specified in call")
 
