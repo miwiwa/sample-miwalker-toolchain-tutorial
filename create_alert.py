@@ -39,7 +39,7 @@ with open(toolchain_json) as f:
 
 print(type(data))
 
-ids_region_id = data['region_id'])
+ids_region_id = data['region_id']
 
 instance_id = [i['instance_id'] for i in data["services"] if 'pipeline' in i['broker_id']]
 ids_instance_id = instance_id[0]
