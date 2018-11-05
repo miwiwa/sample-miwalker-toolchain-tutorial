@@ -39,11 +39,11 @@ with open(toolchain_json) as f:
 
 print(type(data))
 
-ids_region_id = data['services']['region_id'][0]
-ids_instance_id = data['services']['instance_id'][0]
+print(data['region_id'])
+print(data['instance_id'])
  
-print("ids_region_id:", ids_region_id)
-print("ids_instance_id:", ids_instance_id)
+#print("ids_region_id:", ids_region_id)
+#print("ids_instance_id:", ids_instance_id)
 
 
 def trigger_incident():
