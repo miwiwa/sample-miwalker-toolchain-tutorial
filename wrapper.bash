@@ -17,4 +17,3 @@ fi
 
 echo "qa_test: $qa_test"
 
-#return qa_test
