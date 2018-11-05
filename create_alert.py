@@ -37,8 +37,10 @@ toolchain_json = "%s/_toolchain.json" % workspace
 with open(toolchain_json) as f:
     data = json.load(f)
 
-ids_region_id = data["services"]["region_id"]
-ids_instance_id = data["services"]["instance_id"]
+print(type(data))
+
+ids_region_id = [val.get('region_id') for val in data.values()]
+ids_instance_id = [val.get('instance_id') for val in data.values()]
  
 print("ids_region_id:", ids_region_id)
 print("ids_instance_id:", ids_instance_id)
