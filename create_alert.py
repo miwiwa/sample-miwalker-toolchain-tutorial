@@ -39,8 +39,8 @@ with open(toolchain_json) as f:
 
 print(type(data))
 
-ids_region_id = [val.get('region_id') for val in data.values()]
-ids_instance_id = [val.get('instance_id') for val in data.values()]
+ids_region_id = [data[i]['region_id'] for i in data]
+ids_instance_id = [data[i]['instance_id'] for i in data]
  
 print("ids_region_id:", ids_region_id)
 print("ids_instance_id:", ids_instance_id)
