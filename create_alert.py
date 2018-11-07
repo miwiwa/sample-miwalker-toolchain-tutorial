@@ -157,7 +157,13 @@ def trigger_issue(title, body=None, labels=None):
     else:
         print ('Successfully created Git Issue {0:s}'.format(title))
         
-	 
+def get_log():
+	# Download log from stage
+	log_url = "https://console.bluemix.net/devops/pipelines/" + ids_instance_id + "/download/" + pipeline_stage_id + "/" + ids_job_id + "/" + task_id + "/log?env_id=ibm:yp:us-south""
+	
+	r = requests.get(log_url)
+	print r.text
+	
 
 if __name__ == '__main__':	
 	print("=============================")
@@ -167,11 +173,14 @@ if __name__ == '__main__':
 		print("Creating PagerDuty incident....")
 		trigger_incident()
 		print("Creating Git issue....")
-		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", pipeline_full_url, ['bug'])	
+		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", pipeline_full_url, ['bug'])
+		get_log()
 	elif 'incident' in alerts:		
 		trigger_incident()
+		get_log()
 	elif 'issue' in alerts:
 		trigger_issue("Job: " + ids_job_name + " in Stage: " + ids_stage_name + " failed", pipeline_full_url, ['bug'])
+		get_log()
 	else:
 		print("Alert type was not specified in call")
 
