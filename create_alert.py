@@ -57,10 +57,7 @@ instance_id = [i['instance_id'] for i in data["services"] if 'pipeline' in i['br
 ids_instance_id = instance_id[0]
 
 pipeline_base_url = "https://console.bluemix.net/devops/pipelines/" 
-pipeline_full_url = pipeline_base_url + ids_instance_id + "?env_id=" + ids_region_id
-
-#print("ids_region_id:", ids_region_id)
-print("ids_instance_id:", ids_instance_id)
+pipeline_full_url = pipeline_base_url + pipeline_id + pipeline_stage_id + ids_job_id + "?env_id=" + ids_region_id
 
 
 def trigger_incident():
@@ -98,7 +95,7 @@ def trigger_incident():
             },
             "body": {
                 "type": "incident_body",
-                "details":  ids_url
+                "details":  pipeline_full_url
             }
           }
         }
