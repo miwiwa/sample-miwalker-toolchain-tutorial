@@ -161,8 +161,14 @@ def get_log():
 	# Download log from stage
 	log_url = "https://console.bluemix.net/devops/pipelines/" + ids_instance_id + "/download/" + pipeline_stage_id + "/" + ids_job_id + "/" + task_id + "/log?env_id=ibm:yp:us-south"
 	
+	print("log_url:",log_url)
 	r = requests.get(log_url)
+	
+	print("Printing content of r.text")
 	print r.text
+	
+	print("Printing content of r.json")
+	print r.json
 	
 
 if __name__ == '__main__':	
