@@ -173,6 +173,12 @@ def get_log():
 	print("Printing content of r.content")
 	print r.content
 	
+	print("status code")
+	print r.status_code
+	
+	resp = requests.head(log_url)
+	print resp.status_code, resp.text, resp.headers
+	
 
 if __name__ == '__main__':	
 	print("=============================")
