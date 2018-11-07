@@ -170,6 +170,9 @@ def get_log():
 	print("Printing content of r.json")
 	print r.json
 	
+	print("Printing content of r.content")
+	print r.content
+	
 
 if __name__ == '__main__':	
 	print("=============================")
