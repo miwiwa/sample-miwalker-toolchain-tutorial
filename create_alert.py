@@ -159,7 +159,7 @@ def trigger_issue(title, body=None, labels=None):
         
 def get_log():
 	# Download log from stage
-	log_url = "https://console.bluemix.net/devops/pipelines/" + ids_instance_id + "/download/" + pipeline_stage_id + "/" + ids_job_id + "/" + task_id + "/log?env_id=ibm:yp:us-south""
+	log_url = "https://console.bluemix.net/devops/pipelines/" + ids_instance_id + "/download/" + pipeline_stage_id + "/" + ids_job_id + "/" + task_id + "/log?env_id=ibm:yp:us-south"
 	
 	r = requests.get(log_url)
 	print r.text
