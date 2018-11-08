@@ -21,8 +21,6 @@ parser.add_argument('-a','--ALERTS', nargs='+', type=str.lower, dest='ALERTS', h
 args = parser.parse_args()
 alerts = args.ALERTS
 
-print("alerts:",alerts)
-
 # Import Pipeline environment variables 
 ids_job_name = environ.get('IDS_JOB_NAME')
 ids_job_id = environ.get('IDS_JOB_ID')
@@ -48,8 +46,6 @@ toolchain_json = "%s/_toolchain.json" % workspace
 
 with open(toolchain_json) as f:
     data = json.load(f)
-
-print(type(data))
 
 ids_region_id = data['region_id']
 
