@@ -110,7 +110,7 @@ def trigger_incident():
 		
 def trigger_issue(title, body=None, labels=None):
 	# Function creates request to create Git Issue and submits
-   
+    
     # Retrieve values necessary to submit request through Git API.
     # Note: Values not available in toolchain.json
     git_remote_url = subprocess.check_output(['git','config','--get','remote.origin.url'],stderr= subprocess.STDOUT)
@@ -124,11 +124,13 @@ def trigger_issue(title, body=None, labels=None):
 	# Retrieve owner and name of repo from toolchain.json
 	
     repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'github' in i['broker_id']]
-    repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'github' in i['broker_id']]
+   # repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'github' in i['broker_id']]
     
     try:
       git_repo_owner = repo_owner[0]
-      git_repo_name = repo_name[0]
+      #git_repo_name = repo_name[0]
+      repo_name = git_url.split('/').pop()
+      git_repo_name = repo_name.split('.')[0]
       print("git_repo_name:",git_repo_name)
     except IndexError:
       print("ERROR: Git Issues is not configured correctly with the toolchain")
