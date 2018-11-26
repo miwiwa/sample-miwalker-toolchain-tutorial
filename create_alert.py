@@ -118,8 +118,8 @@ def trigger_issue(title, body=None, labels=None):
     git_parameters = pattern.split(git_remote_url)
     git_username = git_parameters[2]
     git_password = git_parameters[3]
-	print("git_username", git_username)
-	print("git_password", git_password)
+    print("git_username", git_username)
+    print("git_password", git_password)
 	# Retrieve owner and name of repo from toolchain.json
     repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'github' in i['broker_id']]
     repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'github' in i['broker_id']]
