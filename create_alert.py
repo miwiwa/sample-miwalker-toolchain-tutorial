@@ -122,12 +122,14 @@ def trigger_issue(title, body=None, labels=None):
     print("git_username", git_username)
     print("git_password", git_password)
 	# Retrieve owner and name of repo from toolchain.json
+	
     repo_owner = [i['parameters']['owner_id'] for i in data["services"] if 'github' in i['broker_id']]
     repo_name = [i['parameters']['repo_name'] for i in data["services"] if 'github' in i['broker_id']]
     
     try:
       git_repo_owner = repo_owner[0]
       git_repo_name = repo_name[0]
+      print("git_repo_name:",git_repo_name)
     except IndexError:
       print("ERROR: Git Issues is not configured correctly with the toolchain")
 
