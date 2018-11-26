@@ -114,6 +114,7 @@ def trigger_issue(title, body=None, labels=None):
     # Retrieve values necessary to submit request through Git API.
     # Note: Values not available in toolchain.json
     git_remote_url = subprocess.check_output(['git','config','--get','remote.origin.url'],stderr= subprocess.STDOUT)
+    print("git_remote_url:", git_remote_url)
     pattern = re.compile(r"//|:|@")
     git_parameters = pattern.split(git_remote_url)
     git_username = git_parameters[2]
